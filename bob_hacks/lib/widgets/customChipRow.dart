@@ -1,5 +1,6 @@
 import 'package:bob_hacks/constants/sizeconfig.dart';
 import 'package:flutter/material.dart';
+
 class CustomChipRow extends StatelessWidget {
   const CustomChipRow({
     super.key,
@@ -55,16 +56,14 @@ class CustomIosChip extends StatelessWidget {
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.symmetric(
-          horizontal: SizeConfig.getPercentWidth(5),
-          vertical: SizeConfig.getPercentWidth(1),
+          horizontal: SizeConfig.getPercentSize(5),
+          vertical: SizeConfig.getPercentSize(1),
         ),
-        margin: EdgeInsets.only(right: SizeConfig.getPercentWidth(2)),
+        margin: EdgeInsets.only(right: SizeConfig.getPercentSize(2)),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           color: isSelected ? Colors.purple : Colors.transparent,
-          border: isSelected
-              ? null
-              : Border.all(color: Colors.black, width: 1),
+          border: isSelected ? null : Border.all(color: Colors.black, width: 1),
         ),
         child: Text(
           text,
@@ -99,7 +98,9 @@ class CustomAndroidChip extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             margin: const EdgeInsets.symmetric(horizontal: 4),
-            child: Text(text,),
+            child: Text(
+              text,
+            ),
           ),
           const SizedBox(height: 4),
           Container(

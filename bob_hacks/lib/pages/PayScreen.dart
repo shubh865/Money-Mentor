@@ -1,3 +1,4 @@
+import 'package:bob_hacks/constants/sizeconfig.dart';
 import 'package:flutter/material.dart';
 
 class Payscreen extends StatelessWidget {
@@ -9,8 +10,11 @@ class Payscreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Pay'),
       ),
-      body: const Center(
-        child: Text('Pay Screen'),
+      body: Center(
+        child: Container(
+            height: SizeConfig.getPercentSize(4),
+            width: SizeConfig.getPercentSize(3),
+            child: Text('Pay Screen')),
       ),
     );
   }
