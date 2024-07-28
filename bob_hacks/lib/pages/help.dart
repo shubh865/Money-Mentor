@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:bob_hacks/constants/image_constants.dart';
+import 'package:bob_hacks/constants/sizeconfig.dart';
 import 'package:bob_hacks/pages/chat_screen.dart';
 // import 'package:bob/widgets/bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -10,13 +11,13 @@ class HelpPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('help', style: TextStyle(color: Colors.white)),
+        title: Text('Help', style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.black,
         elevation: 0,
         centerTitle: true,
         actions: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding:  EdgeInsets.all(SizeConfig.getPercentSize(2)),
             child: CircleAvatar(
               backgroundColor: Colors.grey,
               child: Icon(Icons.qr_code, color: Colors.black),
@@ -27,13 +28,13 @@ class HelpPage extends StatelessWidget {
       body: Column(
         children: [
           Container(
-            padding: EdgeInsets.all(16),
+            padding: EdgeInsets.all(SizeConfig.getPercentSize(3)),
             color: Colors.black,
             child: Row(
               children: [
-                Icon(Icons.help, color: Colors.white),
+                // Icon(Icons.help, color: Colors.white),
                 SizedBox(width: 8),
-                Text('get help 24x7', style: TextStyle(color: Colors.white))
+                // Text('Get help 24x7', style: TextStyle(color: Colors.white))
               ],
             ),
           ),
@@ -55,16 +56,16 @@ class HelpPage extends StatelessWidget {
             child: Row(
               children: [
                 Icon(Icons.chat), // Replace with your image asset
-                SizedBox(width:20),
+                SizedBox(width:SizeConfig.getPercentSize(4)),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'have a query?',
+                        'Have a query?',
                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                       ),
-                      Text('talk to our chatbot, and resolve quickly'),
+                      Text('Talk to our chatbot, and resolve quickly'),
                     ],
                   ),
                 ),
