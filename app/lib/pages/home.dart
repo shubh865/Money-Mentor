@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bob_hacks/pages/ManageScreen.dart';
-import 'package:bob_hacks/pages/PayScreen.dart';
+import 'package:bob_hacks/pages/EducateScreen.dart';
 import 'package:bob_hacks/pages/ExpenseScreen.dart';
 import 'package:bob_hacks/pages/help.dart';
 
@@ -28,7 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
         },
         children: <Widget>[
           Managescreen(),
-          Payscreen(),
+          PayScreen(),
           ExpenseTracker(),
           HelpPage(),
         ],

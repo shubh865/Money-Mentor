@@ -36,8 +36,8 @@ class _BottomnavbarState extends State<Bottomnavbar> {
           label: 'manage',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.credit_card),
-          label: 'pay',
+          icon: Icon(Icons.book),
+          label: 'Educate',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.shopping_bag),
