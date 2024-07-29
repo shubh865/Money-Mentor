@@ -1,5 +1,6 @@
 import 'package:bob_hacks/constants/sizeconfig.dart';
 import 'package:bob_hacks/models/findata.dart';
+import 'package:bob_hacks/utils/ui_utils/text/typography.dart';
 import 'package:flutter/material.dart';
 
 class PayScreen extends StatelessWidget {
@@ -51,7 +52,7 @@ class PayScreen extends StatelessWidget {
               children: [
                 Text(
                   "${index + 1}. ${Modules.modules[index].title}",
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: Typo.labelSmall,
                 ),
                 Container(
                   margin: EdgeInsets.only(top: 5, bottom: 10),
