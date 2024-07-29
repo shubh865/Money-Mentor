@@ -17,7 +17,7 @@ class MainApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         home: Builder(builder: (context) {
           SizeConfig().init(context); // Initialize SizeConfig here
-          return Drop();
+          return MyHomePage();
         }));
   }
 }
