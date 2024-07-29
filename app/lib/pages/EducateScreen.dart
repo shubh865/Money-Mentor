@@ -1,11 +1,10 @@
-import 'package:bob_hacks/constants/sizeconfig.dart';
-import 'package:bob_hacks/core/theme/palette.dart';
-import 'package:bob_hacks/models/findata.dart';
-import 'package:bob_hacks/utils/ui_utils/text/text_widgets.dart';
-import 'package:bob_hacks/utils/ui_utils/text/typography.dart';
+import 'package:bob_hacks/models/Modules.dart';
+import 'package:bob_hacks/pages/module_detailed_screen.dart';
 import 'package:flutter/material.dart';
+// import 'module_detail_screen.dart';
+// import 'module.dart'; // Ensure this path is correct
 
-class PayScreen extends StatelessWidget {
+class Educatescreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -28,7 +27,7 @@ class PayScreen extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            _buildLearningTab(),
+            _buildLearningTab(context),
             Center(child: Text("Videos")),
             Center(child: Text("AI Learning")),
           ],
@@ -37,9 +36,9 @@ class PayScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildLearningTab() {
+  Widget _buildLearningTab(BuildContext context) {
     return ListView.builder(
-      padding: EdgeInsets.all(SizeConfig.getPercentSize(3)),
+      padding: EdgeInsets.all(16.0),
       itemCount: Modules.modules.length,
       itemBuilder: (context, index) {
         return Card(
@@ -48,15 +47,16 @@ class PayScreen extends StatelessWidget {
           ),
           color: Colors.orange.shade100,
           child: Padding(
-            padding: EdgeInsets.all(SizeConfig.getPercentSize(3)),
+            padding: EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   "${index + 1}. ${Modules.modules[index].title}",
-                  style: Typo.titleMedium,
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                Txt("${Modules.modules[index].chapters}",style: Typo.labelLarge.copyWith(color: Palette.grey,)),
+                Text("${Modules.modules[index].chapters}",
+                    style: TextStyle(color: Colors.grey, fontSize: 16)),
                 Container(
                   margin: EdgeInsets.only(top: 5, bottom: 10),
                   height: 4,
@@ -65,16 +65,26 @@ class PayScreen extends StatelessWidget {
                 ),
                 Text(
                   Modules.modules[index].description,
-                  style: Typo.bodyMedium,
+                  style: TextStyle(fontSize: 16),
                 ),
                 SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(Modules.modules[index].module,
-                        style: TextStyle(
-                            color: Colors.blue,
-                            fontWeight: FontWeight.bold)),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ModuleDetailScreen(module: Modules.modules[index]),
+                          ),
+                        );
+                      },
+                      child: Text(Modules.modules[index].module,
+                          style: TextStyle(
+                              color: Colors.blue,
+                              fontWeight: FontWeight.bold)),
+                    ),
                     Text(Modules.modules[index].translate,
                         style: TextStyle(
                             color: Colors.blue,

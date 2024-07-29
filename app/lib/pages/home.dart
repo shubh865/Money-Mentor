@@ -28,7 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
         },
         children: <Widget>[
           Managescreen(),
-          PayScreen(),
+          Educatescreen(),
           ExpenseTracker(),
           HelpPage(),
         ],
