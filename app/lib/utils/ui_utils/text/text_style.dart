@@ -84,7 +84,7 @@ TextStyle smallDescp({Color? color}) {
 
 TextStyle smallDescp2({Color? color}) {
   return TextStyle(
-    fontSize: SizeConfig.getPercentSize(3.2),
+    fontSize: SizeConfig.getPercentSize(4),
     fontWeight: FontWeight.w500,
     color: color ?? Palette.black,
   );

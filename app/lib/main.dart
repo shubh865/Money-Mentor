@@ -1,7 +1,7 @@
 import 'package:bob_hacks/constants/sizeconfig.dart';
 import 'package:bob_hacks/pages/home.dart';
 import 'package:bob_hacks/constants/sizeconfig.dart';
-import 'package:bob_hacks/pages/list_tile.dart';
+import 'package:bob_hacks/pages/corpus/corpus_predicment.dart.dart';
 import 'package:flutter/material.dart';
 
 void main() {
