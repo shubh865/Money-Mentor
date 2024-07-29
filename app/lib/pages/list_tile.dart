@@ -7,38 +7,38 @@ class Drop extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Expense Tracker', style: smallDescp()),
+        title: Text('Expense Tracker'),
         backgroundColor: Colors.black,
       ),
       body: Column(
         children: [
           Container(
+            padding: EdgeInsets.all(16.0),
             decoration: BoxDecoration(
               color: Colors.black,
             ),
             child: Text(
               'Total Corpus Required: 1000000',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+              style: bigBoldTitle(),
             ),
           ),
-          ListView(
-            children: [
-              ListTileWithDropdown(
-                title: 'Fruits',
-                subItems: ['Apple', 'Banana', 'Orange'],
-              ),
-              ListTileWithDropdown(
-                title: 'Vegetables',
-                subItems: ['Carrot', 'Tomato', 'Potato'],
-              ),
-              ListTileWithDropdown(
-                title: 'Animals',
-                subItems: ['Dog', 'Cat', 'Horse'],
-              ),
-            ],
+          Expanded(
+            child: ListView(
+              children: [
+                ListTileWithDropdown(
+                  title: 'Fruits',
+                  subItems: ['Apple', 'Banana', 'Orange'],
+                ),
+                ListTileWithDropdown(
+                  title: 'Vegetables',
+                  subItems: ['Carrot', 'Tomato', 'Potato'],
+                ),
+                ListTileWithDropdown(
+                  title: 'Animals',
+                  subItems: ['Dog', 'Cat', 'Horse'],
+                ),
+              ],
+            ),
           ),
         ],
       ),

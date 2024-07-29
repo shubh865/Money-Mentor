@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../constants/sizeconfig.dart';
 import '../../../core/theme/palette.dart';
-import '../../ui_utils/size/size_config.dart';
 import '../../ui_utils/text/typography.dart';
 
 class CustomChipRow extends StatelessWidget {

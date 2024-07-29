@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../constants/sizeconfig.dart';
 import '../../../core/theme/palette.dart';
-import '../size/size_config.dart';
 import '../text/typography.dart';
 
 class GradientButton extends StatelessWidget {

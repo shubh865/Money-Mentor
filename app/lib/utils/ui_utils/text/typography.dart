@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../size/size_config.dart';
+import '../../../constants/sizeconfig.dart';
 
 class Typo {
   Typo._();
