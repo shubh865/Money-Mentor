@@ -1,0 +1,5 @@
+/backend/scripts/
+*.pyc
+.DS_Store
+.env
+/backend/chromaDB/

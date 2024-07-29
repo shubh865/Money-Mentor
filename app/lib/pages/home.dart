@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:bob_hacks/pages/ManageScreen.dart';
 import 'package:bob_hacks/pages/PayScreen.dart';
-import 'package:bob_hacks/pages/ShopScreen.dart';
+import 'package:bob_hacks/pages/ExpenseScreen.dart';
 import 'package:bob_hacks/pages/help.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -29,7 +29,7 @@ class _MyHomePageState extends State<MyHomePage> {
         children: <Widget>[
           Managescreen(),
           Payscreen(),
-          ShopScreen(),
+          ExpenseTracker(),
           HelpPage(),
         ],
       ),
@@ -55,12 +55,12 @@ class _MyHomePageState extends State<MyHomePage> {
             label: 'pay',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_bag),
-            label: 'shop',
+            icon: Icon(Icons.dashboard),
+            label: 'Analytics',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.help),
-            label: 'help',
+            label: 'Help',
           ),
         ],
       ),

@@ -1,3 +1,4 @@
+import 'package:bob_hacks/constants/sizeconfig.dart';
 import 'package:flutter/material.dart';
 
 class ChatScreen extends StatefulWidget {
@@ -43,7 +44,7 @@ class _ChatScreenState extends State<ChatScreen> {
           SizedBox(width: 10),
           Expanded(
             child: Container(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.all(SizeConfig.getPercentSize(3)),
               decoration: BoxDecoration(
                 color: Colors.grey,
                 borderRadius: BorderRadius.circular(10),
@@ -64,9 +65,9 @@ class _ChatScreenState extends State<ChatScreen> {
         children: [
           Expanded(
             child: Container(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.all(SizeConfig.getPercentSize(3)),
               decoration: BoxDecoration(
-                color: Colors.blue,
+                color: Colors.black,
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Text(message, style: TextStyle(color: Colors.white)),
@@ -74,7 +75,7 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
           SizedBox(width: 10),
           CircleAvatar(
-            backgroundColor: Colors.blue,
+            backgroundColor: Colors.black,
             child: Icon(Icons.person, color: Colors.white),
           ),
         ],
@@ -121,10 +122,10 @@ class _ChatScreenState extends State<ChatScreen> {
             child: Column(
               children: [
                 Container(
-                  padding: EdgeInsets.all(10.0),
+                  padding: EdgeInsets.all(SizeConfig.getPercentSize(3)),
                   child: Wrap(
-                    spacing: 8.0,
-                    runSpacing: 4.0,
+                    spacing:SizeConfig.getPercentSize(3),
+                    runSpacing: SizeConfig.getPercentSize(2),
                     children: [
                       ChoiceChip(
                         label: Text('Internet issue'),
@@ -158,7 +159,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(15.0),
+                  padding:  EdgeInsets.all(SizeConfig.getPercentSize(5)),
                   child: Row(
                     children: [
                       Expanded(
