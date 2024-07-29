@@ -1,7 +1,9 @@
+import 'package:bob_hacks/constants/sizeconfig.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../constants/sizeconfig.dart';
 import '../../../../core/theme/palette.dart';
+// import '../../size/size_config.dart';
 import '../text_style.dart';
 import '../typography.dart';
 

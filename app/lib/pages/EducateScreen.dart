@@ -1,5 +1,8 @@
 import 'package:bob_hacks/constants/sizeconfig.dart';
+import 'package:bob_hacks/core/theme/palette.dart';
 import 'package:bob_hacks/models/findata.dart';
+import 'package:bob_hacks/utils/ui_utils/text/text_widgets.dart';
+import 'package:bob_hacks/utils/ui_utils/text/typography.dart';
 import 'package:flutter/material.dart';
 
 class PayScreen extends StatelessWidget {
@@ -51,8 +54,9 @@ class PayScreen extends StatelessWidget {
               children: [
                 Text(
                   "${index + 1}. ${Modules.modules[index].title}",
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: Typo.titleMedium,
                 ),
+                Txt("${Modules.modules[index].chapters}",style: Typo.labelLarge.copyWith(color: Palette.grey,)),
                 Container(
                   margin: EdgeInsets.only(top: 5, bottom: 10),
                   height: 4,
@@ -61,7 +65,7 @@ class PayScreen extends StatelessWidget {
                 ),
                 Text(
                   Modules.modules[index].description,
-                  style: TextStyle(),
+                  style: Typo.bodyMedium,
                 ),
                 SizedBox(height: 10),
                 Row(
