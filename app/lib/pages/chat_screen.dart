@@ -1,5 +1,8 @@
 import 'package:bob_hacks/constants/sizeconfig.dart';
+import 'package:bob_hacks/core/theme/palette.dart';
+import 'package:bob_hacks/pages/Animated_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -8,52 +11,84 @@ class ChatScreen extends StatefulWidget {
   _ChatScreenState createState() => _ChatScreenState();
 }
 
-class _ChatScreenState extends State<ChatScreen> {
+class _ChatScreenState extends State<ChatScreen>
+    with SingleTickerProviderStateMixin {
   int selectedChipIndex = 0;
   final List<String> bobmessages = ["Hi, we're here to help you."];
   final List<String> usermessages = ["Hey! Nice to meet you, my name is Tej"];
   final TextEditingController _controller = TextEditingController();
+  bool isLoading = false;
+  late AnimationController _controllerDots;
+  late Animation<double> _animation;
 
-  void _sendMessage() async {
-    if (_controller.text.isNotEmpty) {
+  @override
+  void initState() {
+    super.initState();
+    _controllerDots = AnimationController(
+      duration: const Duration(milliseconds: 1000),
+      vsync: this,
+    )..repeat(reverse: true);
+    _animation =
+        CurvedAnimation(parent: _controllerDots, curve: Curves.easeInOut);
+  }
+
+  @override
+  void dispose() {
+    _controllerDots.dispose();
+    super.dispose();
+  }
+
+  void _sendMessage(String message) async {
+    if (message.isNotEmpty) {
       setState(() {
-        usermessages.add(_controller.text);
+        usermessages.add(message);
+        isLoading = true;
       });
-      String userMessage = _controller.text;
-      _controller.clear();
-      String bobResponse = await _getResponseFromApi(userMessage);
+
+      String bobResponse = await _getResponseFromApi(message);
       setState(() {
         bobmessages.add(bobResponse);
+        isLoading = false;
       });
     }
   }
 
   Future<String> _getResponseFromApi(String message) async {
-    final url = Uri.parse('http://your_api_endpoint');
-    final response = await http.post(
-      url,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: json.encode({
-        'category': (selectedChipIndex + 1).toString(),
-        'message': message,
-      }),
-    );
+    try {
+      final url = Uri.parse('http://192.168.1.41:5000/chat');
+      final response = await http.post(
+        url,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: json.encode({
+          'category': (selectedChipIndex + 1).toString(),
+          'message': message,
+        }),
+      );
 
-    if (response.statusCode == 200) {
-      final data = json.decode(response.body);
-      return data['response_message'];
-    } else {
-      return 'Failed to get response from API';
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        String responseData = data['data'] ?? 'Failed to get response from API';
+        // Replace **text** with <b>text</b> and \n with <br>
+        responseData = responseData
+            .replaceAllMapped(
+                RegExp(r'\*\*(.*?)\*\*'), (match) => '<b>${match.group(1)}</b>')
+            .replaceAll('\n', '<br>');
+        return responseData;
+      } else {
+        return 'Failed to get response from API';
+      }
+    } catch (e) {
+      return 'Error: $e';
     }
   }
 
   void _onSelectedChip(int index, String chipText) {
     setState(() {
       selectedChipIndex = index;
-      usermessages.add(chipText);
     });
+    //_sendMessage(chipText);
   }
 
   Widget _buildBOBMessage(String message) {
@@ -62,7 +97,7 @@ class _ChatScreenState extends State<ChatScreen> {
       child: Row(
         children: [
           CircleAvatar(
-            backgroundColor: Colors.grey,
+            backgroundColor: Palette.grey,
             child: Icon(Icons.person, color: Colors.white),
           ),
           SizedBox(width: 10),
@@ -70,10 +105,14 @@ class _ChatScreenState extends State<ChatScreen> {
             child: Container(
               padding: EdgeInsets.all(SizeConfig.getPercentSize(3)),
               decoration: BoxDecoration(
-                color: Colors.grey,
+                color: Palette.lightGrey,
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Text(message),
+              child: AnimatedText(
+                text: message,
+                duration: Duration(
+                    seconds: message.length ~/ 10), // Adjust duration as needed
+              ),
             ),
           ),
         ],
@@ -107,6 +146,22 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
+  Widget _buildLoadingIndicator() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          AnimatedDot(animation: _animation, index: 0),
+          SizedBox(width: 4),
+          AnimatedDot(animation: _animation, index: 1),
+          SizedBox(width: 4),
+          AnimatedDot(animation: _animation, index: 2),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -114,8 +169,11 @@ class _ChatScreenState extends State<ChatScreen> {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('BOB chat', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
-            Text('get help 24x7', style: TextStyle(color: Colors.grey, fontSize: 18)),
+            Text('BOB chat',
+                style: TextStyle(
+                    color: Colors.black, fontWeight: FontWeight.bold)),
+            Text('get help 24x7',
+                style: TextStyle(color: Colors.grey, fontSize: 18)),
           ],
         ),
         backgroundColor: Colors.white,
@@ -130,13 +188,27 @@ class _ChatScreenState extends State<ChatScreen> {
         children: [
           Expanded(
             child: ListView.builder(
-              itemCount: bobmessages.length + usermessages.length,
+              itemCount: usermessages.length +
+                  bobmessages.length +
+                  (isLoading ? 1 : 0),
               itemBuilder: (context, index) {
-                if (index % 2 == 0) {
-                  return _buildBOBMessage(bobmessages[index ~/ 2]);
-                } else {
-                  return _buildUserMessage(usermessages[index ~/ 2]);
+                if (index < usermessages.length + bobmessages.length) {
+                  int userIndex = index ~/ 2;
+                  int bobIndex = index ~/ 2;
+
+                  if (index % 2 == 0 && userIndex < usermessages.length) {
+                    return _buildUserMessage(usermessages[userIndex]);
+                  } else if (index % 2 != 0 && bobIndex < bobmessages.length) {
+                    return _buildBOBMessage(bobmessages[bobIndex]);
+                  }
                 }
+
+                if (isLoading &&
+                    index == usermessages.length + bobmessages.length) {
+                  return _buildLoadingIndicator();
+                }
+
+                return SizedBox.shrink();
               },
             ),
           ),
@@ -187,11 +259,16 @@ class _ChatScreenState extends State<ChatScreen> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                           ),
+                          onSubmitted: (value) {
+                            _sendMessage(value);
+                          },
                         ),
                       ),
                       IconButton(
                         icon: Icon(Icons.send),
-                        onPressed: _sendMessage,
+                        onPressed: () {
+                          _sendMessage(_controller.text);
+                        },
                       ),
                     ],
                   ),
@@ -201,6 +278,34 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class AnimatedDot extends StatelessWidget {
+  final Animation<double> animation;
+  final int index;
+
+  const AnimatedDot({Key? key, required this.animation, required this.index})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: animation,
+      builder: (context, child) {
+        return Opacity(
+          opacity: index == 0 ? animation.value : 1 - animation.value,
+          child: Container(
+            width: 8.0,
+            height: 8.0,
+            decoration: BoxDecoration(
+              color: Colors.grey,
+              shape: BoxShape.circle,
+            ),
+          ),
+        );
+      },
     );
   }
 }
