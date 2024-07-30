@@ -9,5 +9,10 @@ class AssetsConstant{
   //Home Page svgs
   static const String chatbot="$_assetsSvgPath/chatbot.svg";
 // learning module page
-  static const String ch1="$_assetsJpgPath/ch1.jpg";
+  static const String ch1="$_assetsJpgPath/Ch1.jpg";
+   static const String ch2="$_assetsJpgPath/Ch2.jpg";
+    static const String ch3="$_assetsJpgPath/Ch3.jpg";
+     static const String ch4="$_assetsJpgPath/Ch4.jpg";
+      static const String ch5="$_assetsJpgPath/Ch5.jpg";
+
 }
