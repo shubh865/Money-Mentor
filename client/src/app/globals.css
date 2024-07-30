@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@property --num {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+
+.lottery1 {
+  animation: counter 5s infinite alternate ease-in-out;
+  counter-reset: num var(--num);
+  font: 700 45px system-ui;
+}
+.lottery1::after {
+  content: counter(num);
+}
+
+.lottery {
+  animation: counter 1s infinite alternate ease-in-out;
+  counter-reset: num var(--num);
+  font: 700 45px system-ui;
+}
+.lottery::after {
+  content: counter(num);
+}
+
+@keyframes counter {
+  from {
+    --num: 0;
+  }
+  to {
+    --num: 9;
+  }
+}

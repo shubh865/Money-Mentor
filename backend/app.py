@@ -9,6 +9,8 @@ from mongo_engine import db
 
 # from resources.inflation import Inflation
 from resources.predictRetirementCorpus import PredictRetirementCorpus
+from resources.chat import Chat
+from resources.suggestInvestmentStrategies import SuggestInvestmentStrategies
 
 
 app = Flask(__name__)
@@ -22,6 +24,9 @@ api = Api(app)
 
 # api.add_resource(Inflation, '/inflation')
 api.add_resource(PredictRetirementCorpus, '/predictRetirementCorpus')
+api.add_resource(Chat, '/chat')
+api.add_resource(SuggestInvestmentStrategies, '/suggestInvestmentStrategies')
+
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(debug=True)
