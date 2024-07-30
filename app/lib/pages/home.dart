@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:bob_hacks/pages/ManageScreen.dart';
 import 'package:bob_hacks/pages/EducateScreen.dart';
-import 'package:bob_hacks/pages/ExpenseScreen.dart';
+import 'package:bob_hacks/pages/corpus/ExpenseScreen.dart';
 import 'package:bob_hacks/pages/help.dart';
 
 class MyHomePage extends StatefulWidget {

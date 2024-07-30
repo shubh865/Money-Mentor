@@ -1,5 +1,5 @@
 import 'package:bob_hacks/constants/sizeconfig.dart';
-import 'package:bob_hacks/pages/health_detail.dart';
+import 'package:bob_hacks/pages/corpus/health_detail.dart';
 import 'package:bob_hacks/pages/home.dart';
 import 'package:bob_hacks/constants/sizeconfig.dart';
 import 'package:bob_hacks/pages/corpus/corpus_predicment.dart.dart';
