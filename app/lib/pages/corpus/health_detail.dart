@@ -1,24 +1,54 @@
+import 'package:bob_hacks/pages/corpus/corpus_predicment.dart.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:bob_hacks/constants/sizeconfig.dart';
 import 'package:bob_hacks/core/theme/palette.dart';
 import 'package:bob_hacks/utils/ui_utils/text/text_style.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import '../../models/predict_corpus_response.dart';
+import '../../models/recurring_expense.dart';
 
 class HealthDetailsScreen extends StatefulWidget {
+  final User user;
+
+  HealthDetailsScreen({required this.user});
+
   @override
   _HealthDetailsScreenState createState() => _HealthDetailsScreenState();
 }
 
 class _HealthDetailsScreenState extends State<HealthDetailsScreen> {
-  List<Map<String, String>> healthDetails = [
-    {
-      'disease': '',
-      'experiencingFrom': '',
-      'report': '',
-      'additionalInfo': '',
+  List<Map<String, String>> healthDetails = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeHealthDetails();
+  }
+
+  void _initializeHealthDetails() {
+    if (widget.user.currentHealthConditions != null) {
+      healthDetails = widget.user.currentHealthConditions!.map((condition) {
+        return {
+          'disease': condition.diseaseName ?? '',
+          'experiencingFrom': condition.experiencingFrom ?? '',
+          'report': '',
+          'additionalInfo': '',
+        };
+      }).toList();
+    } else {
+      healthDetails = [
+        {
+          'disease': '',
+          'experiencingFrom': '',
+          'report': '',
+          'additionalInfo': '',
+        }
+      ];
     }
-  ];
+  }
 
   Future<void> pickFile(int index) async {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
@@ -38,8 +68,14 @@ class _HealthDetailsScreenState extends State<HealthDetailsScreen> {
     );
     if (picked != null) {
       setState(() {
+        final now = DateTime.now();
+        final duration = Duration(
+          days: now.difference(picked).inDays,
+        );
+        final months = (duration.inDays / 30).floor();
+        final days = duration.inDays % 30;
         healthDetails[index]['experiencingFrom'] =
-            DateFormat('dd/MM/yyyy').format(picked);
+            '$months months and $days days';
       });
     }
   }
@@ -61,16 +97,71 @@ class _HealthDetailsScreenState extends State<HealthDetailsScreen> {
     });
   }
 
+  void _handleNext() {
+    List<CurrentHealthCondition> updatedHealthConditions =
+        healthDetails.map((detail) {
+      return CurrentHealthCondition(
+        diseaseName: detail['disease'],
+        experiencingFrom: detail['experiencingFrom'],
+      );
+    }).toList();
+
+    widget.user.currentHealthConditions = updatedHealthConditions;
+    widget.user.age = 30;
+    widget.user.retirementAge = 60;
+
+    // Make the API call here with the updated user model
+    print(widget.user.toMap()); // Example: Print user data to console
+    predictRetirementCorpus(widget.user);
+  }
+
+  Future<void> predictRetirementCorpus(User user) async {
+    final url = Uri.parse('http://192.168.1.41:5000/predictRetirementCorpus');
+
+    try {
+      final response = await http.post(
+        url,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: json.encode(user.toMap()),
+      );
+
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        print(data);
+        ResponseData responseData = ResponseData.fromMap(data);
+        // Handle the response data as needed
+        // print('Response: $responseData');
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Drop(responseData: responseData),
+          ),
+        );
+      } else {
+        print(
+            'Failed to make the API call. Status code: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error making the API call: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context); // Initialize size configuration
     return Scaffold(
       appBar: AppBar(
+        leading: Icon(
+          Icons.arrow_back,
+          color: Palette.black,
+        ),
         title: Text(
           'Health Details',
-          style: title(color: Palette.white),
+          style: title(color: Palette.black),
         ),
-        backgroundColor: Palette.black,
+        backgroundColor: Palette.white,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -89,7 +180,6 @@ class _HealthDetailsScreenState extends State<HealthDetailsScreen> {
                     child: Container(
                       padding: const EdgeInsets.all(16.0),
                       decoration: BoxDecoration(
-                        //   color: Palette.lightGrey,
                         border: Border.all(color: Palette.grey),
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -233,7 +323,7 @@ class _HealthDetailsScreenState extends State<HealthDetailsScreen> {
                   ),
                 ),
                 ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: _handleNext,
                   icon: Icon(Icons.arrow_forward, color: Palette.white),
                   label: Text(
                     'Next',

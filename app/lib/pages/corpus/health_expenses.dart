@@ -29,8 +29,8 @@ class _HealthExpensesState extends State<HealthExpenses> {
       children: [
         ListTile(
           title: Text(
-            widget.title,
-            style: title1(color: Palette.black),
+            widget.title.toUpperCase(),
+            style: smallDescp2(color: Palette.primaryBlue),
           ),
           trailing: Icon(
             _isExpanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
@@ -53,8 +53,8 @@ class _HealthExpensesState extends State<HealthExpenses> {
                   children: [
                     ListTile(
                       title: Text(
-                        subItem,
-                        style: smallTitle(color: Palette.black),
+                        subItem.toUpperCase(),
+                        style: smallDescp9(),
                       ),
                       trailing: Icon(
                         _selectedSubItem == subItem
@@ -115,7 +115,8 @@ class _HealthExpensesState extends State<HealthExpenses> {
                             buildInfoRow(
                               icon: Icons.trending_up,
                               label: 'Inflation:',
-                              value: widget.subItemData[subItem]?['inflation'],
+                              value: widget.subItemData[subItem]
+                                  ?['inflation_considered_cost'],
                             ),
                           ],
                         ),
@@ -142,7 +143,7 @@ class _HealthExpensesState extends State<HealthExpenses> {
         Spacer(),
         Text(
           value ?? '',
-          style: smallDescp(color: Palette.black),
+          style: smallDescp2(color: Palette.black),
         ),
       ],
     );

@@ -15,15 +15,15 @@ class User {
 
   factory User.fromMap(Map<String, dynamic> map) {
     return User(
-      currentExpenses: map['currentExpenses'] != null
+      currentExpenses: map['current_expenses'] != null
           ? List<CurrentExpense>.from(
-              map['currentExpenses'].map((x) => CurrentExpense.fromMap(x)))
+              map['current_expenses'].map((x) => CurrentExpense.fromMap(x)))
           : [],
       age: map['age'],
-      retirementAge: map['retirementAge'],
-      currentMonthlyExpense: map['currentMonthlyExpense'],
-      currentHealthConditions: map['currentHealthConditions'] != null
-          ? List<CurrentHealthCondition>.from(map['currentHealthConditions']
+      retirementAge: map['retirement_age'],
+      currentMonthlyExpense: map['current_monthly_expense'],
+      currentHealthConditions: map['current_health_conditions'] != null
+          ? List<CurrentHealthCondition>.from(map['current_health_conditions']
               .map((x) => CurrentHealthCondition.fromMap(x)))
           : [],
     );
@@ -31,12 +31,13 @@ class User {
 
   Map<String, dynamic> toMap() {
     return {
-      'currentExpenses': currentExpenses?.map((x) => x.toMap()).toList() ?? [],
+      'current_expenses':
+          currentExpenses?.map((x) => x.toMap())?.toList() ?? [],
       'age': age,
-      'retirementAge': retirementAge,
-      'currentMonthlyExpense': currentMonthlyExpense,
-      'currentHealthConditions':
-          currentHealthConditions?.map((x) => x.toMap()).toList() ?? [],
+      'retirement_age': retirementAge,
+      'current_monthly_expense': currentMonthlyExpense,
+      'current_health_conditions':
+          currentHealthConditions?.map((x) => x.toMap())?.toList() ?? [],
     };
   }
 }
@@ -61,8 +62,18 @@ class CurrentExpense {
   }
 
   Map<String, dynamic> toMap() {
+    String category;
+    if (name?.toLowerCase() == 'grocery') {
+      category = 'food_and_beverages';
+    } else if (name?.toLowerCase().startsWith('gas') == true ||
+        name?.toLowerCase().startsWith('electricity') == true) {
+      category = 'fuel_and_light';
+    } else {
+      category = 'inflation_rate';
+    }
+
     return {
-      'name': name,
+      'name': name?.toLowerCase(),
       'expense': expense,
       'category': category,
     };
@@ -80,15 +91,15 @@ class CurrentHealthCondition {
 
   factory CurrentHealthCondition.fromMap(Map<String, dynamic> map) {
     return CurrentHealthCondition(
-      diseaseName: map['diseaseName'],
-      experiencingFrom: map['experiencingFrom'],
+      diseaseName: map['disease_name'],
+      experiencingFrom: map['experiencing_from'],
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'diseaseName': diseaseName,
-      'experiencingFrom': experiencingFrom,
+      'disease_name': diseaseName,
+      'experiencing_from': experiencingFrom,
     };
   }
 }

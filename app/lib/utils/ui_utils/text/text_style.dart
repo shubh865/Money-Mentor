@@ -92,6 +92,14 @@ TextStyle smallDescp2({Color? color}) {
   );
 }
 
+TextStyle smallDescp9({Color? color}) {
+  return TextStyle(
+    fontSize: SizeConfig.getPercentSize(3.5),
+    fontWeight: FontWeight.w500,
+    color: color ?? Palette.black,
+  );
+}
+
 TextStyle smallTitle2({Color? color}) {
   return TextStyle(
     fontSize: SizeConfig.getPercentSize(3),

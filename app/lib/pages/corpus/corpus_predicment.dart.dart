@@ -3,67 +3,47 @@ import 'package:bob_hacks/pages/corpus/health_expenses.dart';
 import 'package:bob_hacks/pages/corpus/recurring_expense.dart';
 import 'package:bob_hacks/utils/ui_utils/text/text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:bob_hacks/models/predict_corpus_response.dart';
 
 class Drop extends StatelessWidget {
-  final Map<String, Map<String, String>> recurringExpensesData = {
-    'Grocery': {
-      'current_expense': '\$500',
-      'current_inflation': '2%',
-      'at_age_61': '\$2000',
-      'at_age_91': '\$4000',
-      'total': '\$6500',
-    },
-    'Electricity Bill': {
-      'current_expense': '\$300',
-      'current_inflation': '1.5%',
-      'at_age_61': '\$1500',
-      'at_age_91': '\$3500',
-      'total': '\$5300',
-    },
-    'Gas Bill': {
-      'current_expense': '\$400',
-      'current_inflation': '1.8%',
-      'at_age_61': '\$1800',
-      'at_age_91': '\$3800',
-      'total': '\$6000',
-    },
-    'House Maintenance': {
-      'current_expense': '\$400',
-      'current_inflation': '1.8%',
-      'at_age_61': '\$1800',
-      'at_age_91': '\$3800',
-      'total': '\$6000',
-    },
-  };
+  final ResponseData responseData;
 
-  final Map<String, Map<String, String>> healthExpensesData = {
-    'Diabetes': {
-      'surgery_name': '\$100',
-      'cost': '1%',
-      'inflation_rate': '\$500',
-      'inflation': '\$1000',
-    },
-    'Heart Disease': {
-      'surgery_name': '\$100',
-      'cost': '1%',
-      'inflation_rate': '\$500',
-      'inflation': '\$1000',
-    },
-  };
+  Drop({required this.responseData});
 
   @override
   Widget build(BuildContext context) {
+    final recurringExpensesData = {
+      for (var expense in responseData.data.futureExpenses)
+        expense.name: {
+          'current_expense': '\$${expense.currentExpense}',
+          'current_inflation': '${expense.inflationRate}%',
+          'at_age_61': '\$${expense.futureExpenseStart}',
+          'at_age_91': '\$${expense.futureExpenseEnd}',
+          'total': '\$${expense.categoryTotal}',
+        },
+    };
+
+    final healthExpensesData = {
+      for (var disease in responseData.data.futureDiseases)
+        disease.diseaseName: {
+          'surgery_name': disease.surgeryName,
+          'cost': '\$${disease.cost}',
+          'inflation_rate': '${disease.healthInflationRate}%',
+          'inflation_considered_cost': '\$${disease.inflationConsideredCost}',
+        },
+    };
+
     return Scaffold(
       appBar: AppBar(
         leading: Icon(
           Icons.arrow_back,
-          color: Palette.white,
+          color: Palette.black,
         ),
         title: Text(
           'Expense Tracker',
-          style: title(color: Palette.white),
+          style: title(color: Palette.black),
         ),
-        backgroundColor: Palette.black,
+        backgroundColor: Palette.white,
       ),
       body: Column(
         children: [
@@ -83,7 +63,7 @@ class Drop extends StatelessWidget {
                 SizedBox(width: 10),
                 Expanded(
                   child: Text(
-                    'Total Corpus Required: 1000000',
+                    'Total Corpus Required: \$${responseData.data.finalCorpus}',
                     style: title1(color: Palette.black),
                   ),
                 ),
@@ -97,17 +77,16 @@ class Drop extends StatelessWidget {
                 children: [
                   RecurringExpenses(
                     title: 'Recurring Expenses',
-                    subItems: [
-                      'Grocery',
-                      'Electricity Bill',
-                      'Gas Bill',
-                      'House Maintenance'
-                    ],
+                    subItems: responseData.data.futureExpenses
+                        .map((e) => e.name)
+                        .toList(),
                     subItemData: recurringExpensesData,
                   ),
                   HealthExpenses(
                     title: 'Health Expenses',
-                    subItems: ['Diabetes', 'Heart Disease'],
+                    subItems: responseData.data.futureDiseases
+                        .map((d) => d.diseaseName)
+                        .toList(),
                     subItemData: healthExpensesData,
                   ),
                 ],
