@@ -1,5 +1,6 @@
 import 'package:bob_hacks/constants/sizeconfig.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 // import '../size/size_config.dart';
 
@@ -103,6 +104,16 @@ class Typo {
 
   static TextStyle analyticsStyle = const TextStyle(
     fontSize: 13,
+    fontWeight: FontWeight.bold,
+    // letterSpacing: 0.15,
+  );
+  static TextStyle authorName = const TextStyle(
+    fontSize: 8,
+    // fontWeight: FontWeight.bold,
+    // letterSpacing: 0.15,
+  );
+    static TextStyle bookTitle = const TextStyle(
+    fontSize: 10,
     fontWeight: FontWeight.bold,
     // letterSpacing: 0.15,
   );

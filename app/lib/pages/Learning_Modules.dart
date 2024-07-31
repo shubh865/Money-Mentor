@@ -1,9 +1,10 @@
+
 import 'package:bob_hacks/constants/sizeconfig.dart';
 import 'package:flutter/material.dart';
 import 'package:bob_hacks/core/theme/palette.dart';
 import 'package:bob_hacks/models/Modules.dart';
 import 'package:bob_hacks/pages/module_detailed_screen.dart';
-import 'package:bob_hacks/widgets/book_widget.dart'; // Import the new widget
+import 'package:bob_hacks/widgets/book_widget.dart';
 
 class Educatescreen extends StatelessWidget {
   @override
@@ -103,12 +104,12 @@ class Educatescreen extends StatelessWidget {
   Widget _buildBooksTab(BuildContext context) {
     // List of books for demonstration
     final List<Map<String, dynamic>> books = [
-      {'title': 'Rich Dad Poor Dad', 'imagePath': 'assets/jpgs/Ch1.jpg', 'pdfPath': 'assets/pdfs/book1.pdf', 'rating': 4},
-      {'title': 'The Lean Startup', 'imagePath': 'assets/jpgs/Ch2.jpg', 'pdfPath': 'assets/pdfs/book2.pdf', 'rating': 5},
-      {'title': 'The 4-Hour Work Week', 'imagePath': 'assets/jpgs/Ch3.jpg', 'pdfPath': 'assets/pdfs/book3.pdf', 'rating': 4},
-      {'title': 'The Subtle Art of Not Giving a F*ck', 'imagePath': 'assets/jpgs/Ch4.jpg', 'pdfPath': 'assets/pdfs/book4.pdf', 'rating': 3},
-      {'title': 'The Power of Habit', 'imagePath': 'assets/jpgs/Ch5.jpg', 'pdfPath': 'assets/pdfs/book5.pdf', 'rating': 5},
-      {'title': 'Think and Grow Rich', 'imagePath': 'assets/jpgs/Ch1.jpg', 'pdfPath': 'assets/pdfs/book6.pdf', 'rating': 4},
+      {'title': 'Corporate Finance by University of Mumbai','authorName':'Prof. Suhas Pednekar, Ravindra D. Kulkarni','imagePath': 'assets/jpgs/Ch1.jpg', 'pdfPath': 'assets/pdfs/pdf_1.pdf', 'rating': 4},
+      {'title': 'International Finance University Of Mumbai','authorName':'University Of Mumbai', 'imagePath': 'assets/jpgs/Ch2.jpg', 'pdfPath': 'assets/pdfs/pdf_1.pdf', 'rating': 5},
+      {'title': 'Notes on Corporate Finance','authorName':'Zhipeng Yan', 'imagePath': 'assets/jpgs/Ch3.jpg', 'pdfPath': 'assets/pdfs/pdf_1.pdf', 'rating': 4},
+      {'title': 'Basics of Finance', 'authorName':'Gabor Kurthy, Jozsef Varga, Tamas Pesuth, Geza Sebestyen, Gabor Sztanoand Erzsebet Varga','imagePath': 'assets/jpgs/Ch4.jpg', 'pdfPath': 'assets/pdfs/pdf_1.pdf', 'rating': 3},
+      {'title': 'Stock Market Development and Corporate Finance Decisions','authorName' :'Asli Demirgüç-Kunt','imagePath': 'assets/jpgs/Ch5.jpg', 'pdfPath': 'assets/pdfs/pdf_1.pdf', 'rating': 5},
+      {'title': 'Introduction to Financial Accounting SE by David Annand','authorName':'David Annand,', 'imagePath': 'assets/jpgs/Ch1.jpg', 'pdfPath': 'assets/pdfs/pdf_1.pdf', 'rating': 4},
     ];
 
     return GridView.builder(
@@ -116,12 +117,13 @@ class Educatescreen extends StatelessWidget {
       itemCount: books.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        crossAxisSpacing: 1.0,
-        mainAxisSpacing: 1.0,
+        crossAxisSpacing: SizeConfig.getPercentSize(5),
+        mainAxisSpacing: SizeConfig.getPercentSize(5),
       ),
       itemBuilder: (context, index) {
         return BookWidget(
           title: books[index]['title']!,
+          authorName: books[index]['authorName']!,
           imagePath: books[index]['imagePath']!,
           pdfPath: books[index]['pdfPath']!,
           rating: books[index]['rating']!,
@@ -129,7 +131,6 @@ class Educatescreen extends StatelessWidget {
       },
     );
   }
-
   Color _getLineColor(int index) {
     switch (index % 5) {
       case 0:
