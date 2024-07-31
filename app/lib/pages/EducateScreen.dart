@@ -1,6 +1,8 @@
 import 'package:bob_hacks/models/Modules.dart';
 import 'package:bob_hacks/pages/module_detailed_screen.dart';
+import 'package:bob_hacks/pages/video_player.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 // import 'module_detail_screen.dart';
 // import 'module.dart'; // Ensure this path is correct
 
@@ -11,7 +13,8 @@ class Educatescreen extends StatelessWidget {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Learning Modules', style: TextStyle(color: Colors.black)),
+          title: const Text('Learning Modules',
+              style: TextStyle(color: Colors.black)),
           backgroundColor: Colors.white,
           bottom: TabBar(
             labelColor: Colors.blue,
@@ -28,12 +31,16 @@ class Educatescreen extends StatelessWidget {
         body: TabBarView(
           children: [
             _buildLearningTab(context),
-            Center(child: Text("Videos")),
+            VideoListScreen(),
             Center(child: Text("AI Learning")),
           ],
         ),
       ),
     );
+  }
+
+  Widget _buildVideosTab(BuildContext) {
+    return (Center(child: Text("Videos")));
   }
 
   Widget _buildLearningTab(BuildContext context) {
@@ -76,19 +83,18 @@ class Educatescreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ModuleDetailScreen(module: Modules.modules[index]),
+                            builder: (context) => ModuleDetailScreen(
+                                module: Modules.modules[index]),
                           ),
                         );
                       },
                       child: Text(Modules.modules[index].module,
                           style: TextStyle(
-                              color: Colors.blue,
-                              fontWeight: FontWeight.bold)),
+                              color: Colors.blue, fontWeight: FontWeight.bold)),
                     ),
                     Text(Modules.modules[index].translate,
                         style: TextStyle(
-                            color: Colors.blue,
-                            fontWeight: FontWeight.bold)),
+                            color: Colors.blue, fontWeight: FontWeight.bold)),
                   ],
                 ),
               ],

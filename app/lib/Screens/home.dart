@@ -28,6 +28,17 @@ class _ExpensesTrackerScreenState extends State<ExpensesTrackerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xff368983),
+        title: Text(
+          'Expenses Tracker',
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 20,
+            color: Colors.white,
+          ),
+        ),
+      ),
       body: SafeArea(
           child: ValueListenableBuilder(
               valueListenable: box.listenable(),
@@ -145,7 +156,10 @@ class _ExpensesTrackerScreenState extends State<ExpensesTrackerScreen> {
                         color: Color.fromRGBO(250, 250, 250, 0.1),
                         child: GestureDetector(
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => Add_Screen()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Add_Screen()));
                           },
                           child: Icon(
                             Icons.add,
@@ -161,8 +175,11 @@ class _ExpensesTrackerScreenState extends State<ExpensesTrackerScreen> {
                     left: 360,
                     child: GestureDetector(
                       onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => Statistics()));
-                          },
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Statistics()));
+                      },
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(7),
                         child: Container(
