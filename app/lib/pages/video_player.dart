@@ -20,7 +20,7 @@ class _VideoListScreenState extends State<VideoListScreen> {
         _isLoading = true;
       });
       final response = await http.post(
-        Uri.parse('http://192.168.1.41:5000/search'),
+        Uri.parse('http://192.168.1.48:5002/search'),
         body: {'topic': topic},
       );
 
