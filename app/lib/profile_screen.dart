@@ -1,4 +1,7 @@
+import 'package:bob_hacks/Screens/home.dart';
 import 'package:bob_hacks/constants/sizeconfig.dart';
+import 'package:bob_hacks/pages/ManageScreen.dart';
+import 'package:bob_hacks/pages/home.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -18,8 +21,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Registration', style: GoogleFonts.lato()),
-        backgroundColor: Colors.teal,
+        title: Text('Registration', style: GoogleFonts.lato(),),
+        backgroundColor: Colors.white,
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
@@ -103,7 +106,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget _buildSubmitButton() {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.black,
         padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
@@ -114,14 +117,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text('Profile Saved')),
           );
+          Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MyHomePage(),
+                          ),
+                        );
         }
       },
       child: Text(
         'Save',
-        style: GoogleFonts.lato(
+        style: 
+        GoogleFonts.lato(
           fontSize: 18,
+          color: Colors.white,
           fontWeight: FontWeight.bold,
         ),
+      
       ),
     );
   }

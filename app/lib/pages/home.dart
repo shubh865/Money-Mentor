@@ -34,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Educatescreen(),
           ExpenseTracker(),
           HelpPage(),
-          ProfileScreen(),
+          // ProfileScreen(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -52,21 +52,21 @@ class _MyHomePageState extends State<MyHomePage> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.manage_accounts),
-            label: 'manage',
+            label: 'Manage',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.credit_card),
-            label: 'pay',
+            icon: Icon(Icons.book),
+            label: 'Books',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.dashboard),
-            label: 'Analytics',
+            label: 'Corpus',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.help),
             label: 'Help',
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Person'),
+          // BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Person'),
         ],
       ),
     );
