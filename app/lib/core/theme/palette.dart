@@ -32,6 +32,7 @@ class Palette {
   static const Color analytics_container2 = Color(0XFFFFF6F6);
   static const Color analytics_container3 = Color(0XFFE4FFEB);
   static const Color analytics_container4 = Color(0XFFFEFFE4);
+  static const Color Module_cards=Color(0xFFffefdb);
 
 
   

@@ -1,3 +1,4 @@
+import 'package:bob_hacks/core/theme/palette.dart';
 import 'package:bob_hacks/models/Modules.dart';
 import 'package:bob_hacks/pages/module_detailed_screen.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +46,7 @@ class Educatescreen extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
-          color: Colors.orange.shade100,
+          color: Palette.Module_cards,
           child: Padding(
             padding: EdgeInsets.all(16.0),
             child: Column(
