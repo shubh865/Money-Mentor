@@ -132,20 +132,23 @@ class _HealthExpensesState extends State<HealthExpenses> {
 
   Widget buildInfoRow(
       {required IconData icon, required String label, required String? value}) {
-    return Row(
-      children: [
-        Icon(icon, color: Palette.black),
-        SizedBox(width: 8),
-        Text(
-          label,
-          style: smallDescp2(color: Palette.black),
-        ),
-        Spacer(),
-        Text(
-          value ?? '',
-          style: smallDescp2(color: Palette.black),
-        ),
-      ],
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          Icon(icon, color: Palette.black),
+          SizedBox(width: 8),
+          Text(
+            label,
+            style: smallDescp2(color: Palette.black),
+          ),
+          Spacer(),
+          Text(
+            value ?? '',
+            style: smallDescp2(color: Palette.black),
+          ),
+        ],
+      ),
     );
   }
 }

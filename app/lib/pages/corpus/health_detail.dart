@@ -116,7 +116,7 @@ class _HealthDetailsScreenState extends State<HealthDetailsScreen> {
   }
 
   Future<void> predictRetirementCorpus(User user) async {
-    final url = Uri.parse('http://192.168.1.41:5000/predictRetirementCorpus');
+    final url = Uri.parse('http://192.168.1.48:5001/predictRetirementCorpus');
 
     try {
       final response = await http.post(

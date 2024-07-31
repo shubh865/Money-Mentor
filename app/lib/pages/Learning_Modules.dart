@@ -1,5 +1,6 @@
 
 import 'package:bob_hacks/constants/sizeconfig.dart';
+import 'package:bob_hacks/pages/video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:bob_hacks/core/theme/palette.dart';
 import 'package:bob_hacks/models/Modules.dart';
@@ -30,7 +31,7 @@ class Educatescreen extends StatelessWidget {
         body: TabBarView(
           children: [
             _buildLearningTab(context),
-            Center(child: Text("Videos")),
+            VideoListScreen(),
             _buildBooksTab(context),
           ],
         ),
