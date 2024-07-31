@@ -10,7 +10,7 @@ const Navbar = () => {
   return (
     <div className="w-full h-[60px] min-h-[60px] border-b border-[#ececfb] shadow-sm flex flex-row items-center px-[10px]">
       <div className="flex flex-row gap-x-[10px] justify-between w-full items-center">
-        <p>some link</p>
+        <p></p>
         <div className="flex gap-x-[15px] items-center py-[10px] rounded-[10px] px-[10px]">
           <img
             className="h-[40px] border border-[2px] border rounded-full"
