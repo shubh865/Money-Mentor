@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pdfview/flutter_pdfview.dart';
+import 'package:pdfx/pdfx.dart';
 
 class PdfViewerScreen extends StatefulWidget {
   final String pdfPath;
@@ -11,9 +11,21 @@ class PdfViewerScreen extends StatefulWidget {
 }
 
 class _PdfViewerScreenState extends State<PdfViewerScreen> {
-  late PDFViewController pdfViewController;
-  bool isReady = false;
-  String errorMessage = 'no pdf seen ';
+  late PdfController pdfController;
+
+  @override
+  void initState() {
+    super.initState();
+    pdfController = PdfController(
+      document: PdfDocument.openAsset(widget.pdfPath),
+    );
+  }
+
+  @override
+  void dispose() {
+    pdfController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,41 +33,8 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
       appBar: AppBar(
         title: Text('PDF Viewer'),
       ),
-      body: Stack(
-        children: [
-          PDFView(
-            filePath: widget.pdfPath,
-            enableSwipe: true,
-            swipeHorizontal: true,
-            autoSpacing: false,
-            pageFling: false,
-            onRender: (_pages) {
-              setState(() {
-                isReady = true;
-              });
-            },
-            onError: (error) {
-              setState(() {
-                errorMessage = error.toString();
-              });
-              print(error.toString());
-            },
-            onPageError: (page, error) {
-              setState(() {
-                errorMessage = '$page: ${error.toString()}';
-              });
-              print('$page: ${error.toString()}');
-            },
-            onViewCreated: (PDFViewController pdfViewController) {
-              this.pdfViewController = pdfViewController;
-            },
-          ),
-          errorMessage.isEmpty
-              ? !isReady
-                  ? Center(child: CircularProgressIndicator())
-                  : Container()
-              : Center(child: Text(errorMessage)),
-        ],
+      body: PdfView(
+        controller: pdfController,
       ),
     );
   }

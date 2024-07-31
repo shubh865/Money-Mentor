@@ -1,4 +1,5 @@
 import 'package:bob_hacks/Screens/home.dart';
+import 'package:bob_hacks/profile_screen.dart';
 import 'package:bob_hacks/widgets/bottomnavigationbar.dart';
 import 'package:flutter/material.dart';
 import 'package:bob_hacks/pages/ManageScreen.dart';
@@ -33,6 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Educatescreen(),
           ExpenseTracker(),
           HelpPage(),
+          ProfileScreen(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -64,6 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
             icon: Icon(Icons.help),
             label: 'Help',
           ),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Person'),
         ],
       ),
     );

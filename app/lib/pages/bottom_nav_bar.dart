@@ -47,6 +47,7 @@ class _BottomnavbarState extends State<Bottomnavbar> {
           icon: Icon(Icons.help),
           label: 'help',
         ),
+        BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Person'),
       ],
     );
   }
