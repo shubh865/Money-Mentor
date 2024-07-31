@@ -2,7 +2,7 @@ import 'package:bob_hacks/Screens/home.dart';
 import 'package:bob_hacks/widgets/bottomnavigationbar.dart';
 import 'package:flutter/material.dart';
 import 'package:bob_hacks/pages/ManageScreen.dart';
-import 'package:bob_hacks/pages/EducateScreen.dart';
+import 'package:bob_hacks/pages/Learning_Modules.dart';
 import 'package:bob_hacks/pages/corpus/ExpenseScreen.dart';
 import 'package:bob_hacks/pages/help.dart';
 
