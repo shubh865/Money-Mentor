@@ -11,7 +11,7 @@ export function Pie({label,color,pieData}) {
         labels: label,
         datasets: [
           {
-            label: '# of Votes',
+            label: 'Price',
             data: pieData,
             backgroundColor: color,
             

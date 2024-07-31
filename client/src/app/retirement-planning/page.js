@@ -4,6 +4,7 @@ import AddExpenses from "@/components/AddExpenses/AddExpenses";
 import AddHealthRecord from "@/components/HealthRecords/HeathRecords";
 import FinalReport from "@/components/FinalReport/FinalReport";
 import axios from "axios";
+import { ScaleLoader } from "react-spinners";
 
 const PredictCorpus = () => {
   const [data, setData] = useState({});
@@ -69,7 +70,13 @@ const PredictCorpus = () => {
         <AddHealthRecord handleSubmit={addHealthRecord} />
       ) : (
         <>
-          {!isLoading ? <FinalReport list={response} /> : <h1>Loading...</h1>}
+          {!isLoading ? (
+            <FinalReport list={response} />
+          ) : (
+            <div className="flex flex-col min-h-[calc(100vh-200px)] w-full justify-center items-center">
+              <ScaleLoader color="#3b82f6" />
+            </div>
+          )}
         </>
       )}
     </>
