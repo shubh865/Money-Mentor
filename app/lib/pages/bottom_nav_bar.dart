@@ -37,17 +37,17 @@ class _BottomnavbarState extends State<Bottomnavbar> {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.book),
-          label: 'Educate',
+          label: 'Books',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.shopping_bag),
-          label: 'shop',
+          label: 'Corpus',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.help),
-          label: 'help',
+          label: 'Help',
         ),
-        BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Person'),
+        // BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Person'),
       ],
     );
   }
