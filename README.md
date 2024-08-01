@@ -40,8 +40,10 @@ The application includes **Financial Calculators** such as:
 
 For those interested in **Market Insights**, the application provides access to the most trending stocks and market insights, with the ability to place orders directly through a Zerodha account.
 
+# Website Prototype Video
+https://youtu.be/xsfWU-KZF8I
 
-# Mobile Prototype Link
+# Mobile Prototype Video
 https://youtu.be/npqpnqCg734
 
 ## Steps to run the App:
