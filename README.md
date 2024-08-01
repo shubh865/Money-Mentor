@@ -44,7 +44,7 @@ For those interested in **Market Insights**, the application provides access to 
 https://youtu.be/xsfWU-KZF8I
 
 # Mobile Prototype Video
-https://youtu.be/npqpnqCg734
+https://drive.google.com/file/d/1mi6A9hVmPMjXGn_ppchbUWHSjvj0t97e/view?usp=drive_link
 
 
 
