@@ -40,10 +40,38 @@ The application includes **Financial Calculators** such as:
 
 For those interested in **Market Insights**, the application provides access to the most trending stocks and market insights, with the ability to place orders directly through a Zerodha account.
 
-## 🚀 Installation
 
-### Mobile Application
+# Mobile Prototype Link
+https://youtu.be/npqpnqCg734
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/financial-mobile-app.git
+## Steps to run the App:
+
+> Steps to run a mobile application using Flutter:
+```
+Start by installing the dependencies listed in the pubspec.yaml file by using command "flutter pub get"
+
+Ensure that your Android emulator is up and running.
+To start your emulator write this command "flutter emulators --launch <emulator_id>"
+
+Execute the "flutter run" command to install and launch the application on the emulator
+```
+
+# Frontend
+  > client Folder
+
+## Steps to run Frontend branch
+```
+cd client
+npm i
+npm run dev
+```
+
+# Backend
+  > backend Folder
+
+## Steps to run the backend
+
+```
+pip install -r requirements.txt
+python app.py 
+```
