@@ -46,6 +46,8 @@ https://youtu.be/xsfWU-KZF8I
 # Mobile Prototype Video
 https://youtu.be/npqpnqCg734
 
+
+
 ## Steps to run the App:
 
 > Steps to run a mobile application using Flutter:
@@ -57,6 +59,19 @@ To start your emulator write this command "flutter emulators --launch <emulator_
 
 Execute the "flutter run" command to install and launch the application on the emulator
 ```
+## APP Preview:
+
+<img width="327" alt="Screenshot 2024-08-01 at 6 00 59 PM" src="https://github.com/user-attachments/assets/811d114c-d95b-445c-bd58-2a0da02ddb14">
+<img width="327" alt="Screenshot 2024-08-01 at 6 01 20 PM" src="https://github.com/user-attachments/assets/35bc2760-54c0-445c-bb2e-92676d98f9c8">
+<img width="327" alt="Screenshot 2024-08-01 at 6 01 29 PM" src="https://github.com/user-attachments/assets/c3a01a1a-e286-4760-84b5-209588aeb84b">
+<img width="327" alt="Screenshot 2024-08-01 at 6 01 35 PM" src="https://github.com/user-attachments/assets/0dcda695-d6ad-4447-acdc-877e10110909">
+<img width="327" alt="Screenshot 2024-08-01 at 6 01 39 PM" src="https://github.com/user-attachments/assets/b433bc52-860a-4a97-a8eb-b6760b0e2a29">
+<img width="327" alt="Screenshot 2024-08-01 at 6 01 43 PM" src="https://github.com/user-attachments/assets/523cc8fd-edf6-47fb-b7fe-bcbd9123a373">
+<img width="327" alt="Screenshot 2024-08-01 at 6 02 23 PM" src="https://github.com/user-attachments/assets/df77d3aa-829c-4e82-bbd1-51eab84fbffe">
+<img width="327" alt="Screenshot 2024-08-01 at 6 02 30 PM" src="https://github.com/user-attachments/assets/e2070f41-8efb-491c-a0c2-e0bce6483270">
+<img width="327" alt="Screenshot 2024-08-01 at 6 02 57 PM" src="https://github.com/user-attachments/assets/3340097a-a26e-46fa-bb67-f3555924727d">
+<img width="327" alt="Screenshot 2024-08-01 at 6 03 38 PM" src="https://github.com/user-attachments/assets/3a789443-4351-411e-8b53-9ce1f8735e38">
+<img width="327" alt="Screenshot 2024-08-01 at 6 04 55 PM" src="https://github.com/user-attachments/assets/0087fecd-2095-4b44-b8b4-2e8c7ef9170b">
 
 # Frontend
   > client Folder
@@ -68,6 +83,25 @@ npm i
 npm run dev
 ```
 
+## WEB Preview:
+
+<img width="1412" alt="Screenshot 2024-08-01 at 5 58 33 PM" src="https://github.com/user-attachments/assets/24e321f9-302c-461a-9632-334f03db370c">
+<img width="1412" alt="Screenshot 2024-08-01 at 5 57 29 PM" src="https://github.com/user-attachments/assets/097a7c9f-d9b4-426c-9092-137a68b585a5">
+
+<img width="1412" alt="Screenshot 2024-08-01 at 5 58 10 PM" src="https://github.com/user-attachments/assets/d49cc12f-0b6e-4548-aaf2-344dff6dad7b">
+<img width="1412" alt="Screenshot 2024-08-01 at 5 58 27 PM" src="https://github.com/user-attachments/assets/9e1054fc-d163-4fcd-8fcb-a8ab2f0d3b79">
+
+
+<img width="1412" alt="Screenshot 2024-08-01 at 5 57 14 PM" src="https://github.com/user-attachments/assets/65816c86-1427-4d62-a64d-bc0b9e1c1e50">
+<img width="1412" alt="Screenshot 2024-08-01 at 5 57 18 PM" src="https://github.com/user-attachments/assets/cc8e58eb-a2d7-4407-9a2d-a65a9a37f9f8">
+<img width="1412" alt="Screenshot 2024-08-01 at 5 56 56 PM" src="https://github.com/user-attachments/assets/2e040184-68df-47ff-b39b-a65e790e0861">
+
+
+
+
+
+
+
 # Backend
   > backend Folder
 
@@ -77,3 +111,6 @@ npm run dev
 pip install -r requirements.txt
 python app.py 
 ```
+
+
+
