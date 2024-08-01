@@ -97,11 +97,6 @@ npm run dev
 <img width="1412" alt="Screenshot 2024-08-01 at 5 56 56 PM" src="https://github.com/user-attachments/assets/2e040184-68df-47ff-b39b-a65e790e0861">
 
 
-
-
-
-
-
 # Backend
   > backend Folder
 
@@ -111,6 +106,10 @@ npm run dev
 pip install -r requirements.txt
 python app.py 
 ```
+
+## Contributors
+<br />Deep Parekh  : https://github.com/DeepParekh03
+<br />Tej Parmar   : https://github.com/tejparmar10
 
 
 
