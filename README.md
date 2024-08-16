@@ -110,6 +110,8 @@ python app.py
 ## Contributors
 <br />Deep Parekh  : https://github.com/DeepParekh03
 <br />Tej Parmar   : https://github.com/tejparmar10
+<br />Shubh Harde  : https://github.com/shubh56
+
 
 
 
