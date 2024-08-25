@@ -3,7 +3,6 @@ import 'package:bob_hacks/core/theme/palette.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/ui_utils/text/text_style.dart';
-
 class HealthExpenses extends StatefulWidget {
   final String title;
   final List<String> subItems;
@@ -39,13 +38,12 @@ class _HealthExpensesState extends State<HealthExpenses> {
           onTap: () {
             setState(() {
               _isExpanded = !_isExpanded;
-              _selectedSubItem =
-                  null; // Reset selected sub-item when collapsing main tile
+              _selectedSubItem = null; // Reset selected sub-item when collapsing main tile
             });
           },
         ),
         if (_isExpanded)
-          Padding(
+          Container(
             padding: const EdgeInsets.only(left: 16.0),
             child: Column(
               children: widget.subItems.map((subItem) {
@@ -64,8 +62,7 @@ class _HealthExpensesState extends State<HealthExpenses> {
                       ),
                       onTap: () {
                         setState(() {
-                          _selectedSubItem =
-                              _selectedSubItem == subItem ? null : subItem;
+                          _selectedSubItem = _selectedSubItem == subItem ? null : subItem;
                         });
                       },
                     ),
@@ -95,8 +92,7 @@ class _HealthExpensesState extends State<HealthExpenses> {
                             buildInfoRow(
                               icon: Icons.local_hospital,
                               label: 'Surgery Name:',
-                              value: widget.subItemData[subItem]
-                                  ?['surgery_name'],
+                              value: widget.subItemData[subItem]?['surgery_name'],
                             ),
                             SizedBox(height: 8),
                             buildInfoRow(
@@ -108,15 +104,13 @@ class _HealthExpensesState extends State<HealthExpenses> {
                             buildInfoRow(
                               icon: Icons.trending_up,
                               label: 'Inflation Rate:',
-                              value: widget.subItemData[subItem]
-                                  ?['inflation_rate'],
+                              value: widget.subItemData[subItem]?['inflation_rate'],
                             ),
                             SizedBox(height: 8),
                             buildInfoRow(
                               icon: Icons.trending_up,
                               label: 'Inflation:',
-                              value: widget.subItemData[subItem]
-                                  ?['inflation_considered_cost'],
+                              value: widget.subItemData[subItem]?['inflation_considered_cost'],
                             ),
                           ],
                         ),
@@ -130,25 +124,55 @@ class _HealthExpensesState extends State<HealthExpenses> {
     );
   }
 
-  Widget buildInfoRow(
-      {required IconData icon, required String label, required String? value}) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: [
-          Icon(icon, color: Palette.black),
-          SizedBox(width: 8),
-          Text(
-            label,
-            style: smallDescp2(color: Palette.black),
+  Widget buildInfoRow({
+    required IconData icon,
+    required String label,
+    required String? value,
+  }) {
+    return Row(
+      children: [
+        Icon(icon, color: Palette.black),
+        SizedBox(width: 8),
+        Text(
+          label,
+          style: smallDescp2(color: Palette.black),
+        ),
+        
+        Spacer(),
+        Expanded(
+          child: RichText(
+            text: TextSpan(
+              children: _splitLabel(value??'', style: smallDescp2(color: Palette.black)),
+            ),
           ),
-          Spacer(),
-          Text(
-            value ?? '',
-            style: smallDescp2(color: Palette.black),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
+
+  List<TextSpan> _splitLabel(String label, {TextStyle? style}) {
+    List<String> words = label.split(' ');
+    if (words.length > 2) {
+      // Create a list of TextSpans that breaks to the next line if there are more than 2 words
+      return [
+        TextSpan(
+          text: words.take(2).join(' ') + ' ',
+          style: style,
+        ),
+        TextSpan(
+          text: words.skip(2).join(' '),
+          style: style,
+        ),
+      ];
+    } else {
+      // Single TextSpan for labels with 2 or fewer words
+      return [
+        TextSpan(
+          text: label,
+          style: style,
+        ),
+      ];
+    }
+  }
 }
+

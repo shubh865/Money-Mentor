@@ -43,7 +43,7 @@ const PredictCorpus = () => {
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "http://localhost:5000/predictRetirementCorpus",
+      url: "http://127.0.0.1:5001/predictRetirementCorpus",
       headers: {
         "Content-Type": "application/json",
       },

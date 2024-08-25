@@ -14,7 +14,7 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen>
     with SingleTickerProviderStateMixin {
   int selectedChipIndex = 0;
-  final List<String> bobmessages = ["Hi, we're here to help you."];
+  final List<String> bobmessages = ["Hi, we're here to help you  Deep Parekh."];
   final List<String> usermessages = ["Hey! Nice to meet you"];
   final TextEditingController _controller = TextEditingController();
   bool isLoading = false;
@@ -55,7 +55,7 @@ class _ChatScreenState extends State<ChatScreen>
 
   Future<String> _getResponseFromApi(String message) async {
     try {
-      final url = Uri.parse('http://192.168.1.48:5001/chat');
+      final url = Uri.parse('http://192.168.29.72:5001/chat');
       final response = await http.post(
         url,
         headers: {

@@ -33,68 +33,69 @@ class Drop extends StatelessWidget {
         },
     };
 
-    return Scaffold(
-      appBar: AppBar(
-        leading: Icon(
-          Icons.arrow_back,
-          color: Palette.black,
+   return Scaffold(
+  appBar: AppBar(
+    leading: IconButton(
+      onPressed: (){
+        Navigator.pop(context);
+      },
+      icon:Icon(Icons.arrow_back),
+      color: Palette.black,
+    ),
+    title: Text(
+      'Expense Tracker',
+      style: title(color: Palette.black),
+    ),
+    backgroundColor: Palette.white,
+  ),
+  body: Column(
+    children: [
+      Container(
+        padding: EdgeInsets.all(16.0),
+        decoration: BoxDecoration(
+          color: Palette.lightGrey,
+          borderRadius: BorderRadius.circular(10),
         ),
-        title: Text(
-          'Expense Tracker',
-          style: title(color: Palette.black),
-        ),
-        backgroundColor: Palette.white,
-      ),
-      body: Column(
-        children: [
-          Container(
-            padding: EdgeInsets.all(16.0),
-            decoration: BoxDecoration(
-              color: Palette.lightGrey,
-              borderRadius: BorderRadius.circular(10),
+        margin: EdgeInsets.all(16.0),
+        child: Row(
+          children: [
+            Icon(
+              Icons.account_balance_wallet,
+              color: Palette.black,
             ),
-            margin: EdgeInsets.all(16.0),
-            child: Row(
-              children: [
-                Icon(
-                  Icons.account_balance_wallet,
-                  color: Palette.black,
-                ),
-                SizedBox(width: 10),
-                Expanded(
-                  child: Text(
-                    'Total Corpus Required: \$${responseData.data.finalCorpus}',
-                    style: title1(color: Palette.black),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-              child: ListView(
-                children: [
-                  RecurringExpenses(
-                    title: 'Recurring Expenses',
-                    subItems: responseData.data.futureExpenses
-                        .map((e) => e.name)
-                        .toList(),
-                    subItemData: recurringExpensesData,
-                  ),
-                  HealthExpenses(
-                    title: 'Health Expenses',
-                    subItems: responseData.data.futureDiseases
-                        .map((d) => d.diseaseName)
-                        .toList(),
-                    subItemData: healthExpensesData,
-                  ),
-                ],
+            SizedBox(width: 10),
+            Expanded(
+              child: Text(
+                'Total Corpus Required: \$${responseData.data.finalCorpus}',
+                style: title1(color: Palette.black),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
-    );
+      Expanded( // Wrap the ListView with Expanded
+        child: ListView(
+          children: [
+            RecurringExpenses(
+              title: 'Recurring Expenses',
+              subItems: responseData.data.futureExpenses
+                  .map((e) => e.name)
+                  .toList(),
+              subItemData: recurringExpensesData,
+            ),
+            HealthExpenses(
+              title: 'Health Expenses',
+              subItems: responseData.data.futureDiseases
+                  .map((d) => d.diseaseName)
+                  .toList(),
+              subItemData: healthExpensesData,
+            ),
+          ],
+        ),
+      ),
+    ],
+  ),
+);
+
   }
 }

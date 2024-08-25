@@ -76,7 +76,7 @@ const Goals = () => {
         redirect: "follow",
       };
 
-      fetch("http://localhost:5000/suggestInvestmentStrategies", requestOptions)
+      fetch("http://127.0.0.1:5001/suggestInvestmentStrategies", requestOptions)
         .then((response) => response.json())
         .then((result) => {
           setApiOutput(result.data);

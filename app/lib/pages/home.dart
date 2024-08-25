@@ -1,4 +1,5 @@
 import 'package:bob_hacks/Screens/home.dart';
+import 'package:bob_hacks/pages/InvestmentForm.dart';
 import 'package:bob_hacks/profile_screen.dart';
 import 'package:bob_hacks/widgets/bottomnavigationbar.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Educatescreen(),
           ExpenseTracker(),
           HelpPage(),
+          InvestmentForm(),
           // ProfileScreen(),
         ],
       ),
@@ -65,6 +67,10 @@ class _MyHomePageState extends State<MyHomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.help),
             label: 'Help',
+          ),
+           BottomNavigationBarItem(
+            icon: Icon(Icons.money),
+            label: 'Risk',
           ),
           // BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Person'),
         ],

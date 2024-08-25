@@ -47,6 +47,10 @@ class _BottomnavbarState extends State<Bottomnavbar> {
           icon: Icon(Icons.help),
           label: 'Help',
         ),
+         BottomNavigationBarItem(
+          icon: Icon(Icons.money),
+          label: 'Risk',
+        ),
         // BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Person'),
       ],
     );
